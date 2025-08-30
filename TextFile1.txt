@@ -1,0 +1,25 @@
+using UnityEngine;
+using System.Collections;
+
+public class Move : MonoBehaviour {
+
+	public float speed;
+
+	void Update() {
+		if(Input.GetKey(KeyCode.W)) {
+			rigidbody2D.AddForce(Vector2.up * speed);
+		}
+
+		if(Input.GetKey(KeyCode.A)) {
+			rigidbody2D.AddForce(-Vector2.right * speed);
+		}
+
+		if(Input.GetKey(KeyCode.S)) {
+			rigidbody2D.AddForce(-Vector2.up * speed);
+		}
+
+		if(Input.GetKey(KeyCode.D)) {
+			rigidbody2D.AddForce(Vector2.right * speed);
+		}
+	}
+}
