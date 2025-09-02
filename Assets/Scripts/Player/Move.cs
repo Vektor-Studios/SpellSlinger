@@ -1,4 +1,3 @@
-// Example usage of the new Input System
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -49,7 +48,7 @@ public class Move : MonoBehaviour
         var _attacking = inputActions.Player.Attack.triggered;
         var _interacting = inputActions.Player.Interact.triggered;
         var _sprinting = inputActions.Player.Sprint.IsPressed();
-        var _reloading = inputActions.Player.Reload.IsPressed(); // Changed to IsPressed for hold detection
+        var _reloading = inputActions.Player.Reload.IsPressed();
 
         // Handle reloading logic
         if (_reloading && !isReloading && bulletsLeft < magazineSize)
@@ -116,7 +115,7 @@ public class Move : MonoBehaviour
         transform.position += new Vector3(move.x, move.y, 0f) * speed * Time.deltaTime;
     }
 
-    void Reload()
+    void Reload() // Reload the weapon
     {
         bulletsLeft = magazineSize;
         Debug.Log("Reloaded!");
@@ -183,7 +182,7 @@ public class Move : MonoBehaviour
             GUI.color = Color.white; // Reset color
         }
 
-        // Draw reload bar **below** player
+        // Draw reload bar below player
         if (isReloading)
         {
             Vector3 worldPos = transform.position + Vector3.down * 1.2f;
@@ -209,4 +208,3 @@ public class Move : MonoBehaviour
         }
     }
 }
-//ello

@@ -7,7 +7,7 @@ public class EnemySpawner : MonoBehaviour
     public int roundNumber = 0;      // Current round number
     public float spawnRadius = 8f;   // Distance from the player to spawn enemies
 
-    public Transform player;         // Assign your player here in the Inspector (or auto-find)
+    public Transform player;
     void Awake()
     {
         // Auto-find player if not assigned
@@ -25,13 +25,6 @@ public class EnemySpawner : MonoBehaviour
 
         // Count current enemies in the scene
         int currentEnemies = GameObject.FindGameObjectsWithTag("Enemy").Length;
-
-       // timer += Time.deltaTime;
-        //if (timer >= spawnInterval && currentEnemies < maxEnemies)
-        //{
-        // timer = 0f;
-        //SpawnEnemy();
-        //}
         if (currentEnemies == 0)
         {
             maxEnemies += 2 * roundNumber; // Increase max enemies each round
