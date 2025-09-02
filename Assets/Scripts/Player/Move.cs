@@ -129,7 +129,8 @@ public class Move : MonoBehaviour
         {
             currentHP = 0;
             // Handle player death (e.g., respawn, game over, etc.)
-            Debug.Log("Player Died!");
+            inputActions.Disable(); // Disable input on death
+            Debug.Log("Player has died!");
         }
     }
 
