@@ -131,7 +131,7 @@ public class Enemy : MonoBehaviour
     {
         if (isInvulnerable)
             return;
-
+        currentState = State.Chase; // Switch to chase state when hit
         health -= amount;
         if (health <= 0)
             Destroy(gameObject);
