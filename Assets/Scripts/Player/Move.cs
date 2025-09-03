@@ -160,7 +160,7 @@ public class Move : MonoBehaviour
         }
 
         // Draw player health bar above player
-        {
+            {
             Vector3 worldPos = transform.position + Vector3.up * 1.7f;
             Vector3 screenPos = Camera.main.WorldToScreenPoint(worldPos);
 

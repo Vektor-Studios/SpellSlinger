@@ -15,13 +15,6 @@ public class Enemy : MonoBehaviour
     public float speed = 2f;
     public int maxHealth = 3;
     public int health = 0;
-
-    // Patrol settings
-    public Transform[] patrolPoints;
-    private int currentPatrolIndex = 0;
-    public float patrolWaitTime = 1f;
-    private float patrolWaitTimer = 0f;
-
     // Flee settings
     public float fleeDistance = 6f;
 
@@ -71,11 +64,6 @@ public class Enemy : MonoBehaviour
                 fleeTimer = 0f;
                 Chase();
                 break;
-            case State.Patrol:
-                idleTimer = 0f; // Reset idle timer when not idling
-                fleeTimer = 0f;
-                Patrol();
-                break;
             case State.Flee:
                 idleTimer = 0f; // Reset idle timer when not idling
                 Flee();
@@ -110,31 +98,6 @@ public class Enemy : MonoBehaviour
             //if (Vector2.Distance(player.position, transform.position) < fleeDistance)
             if (health <= maxHealth / 2) // Flee if health is low
                 currentState = State.Flee;
-        }
-    }
-
-    void Patrol()
-    {
-        if (patrolPoints == null || patrolPoints.Length == 0)
-            return;
-
-        Transform targetPoint = patrolPoints[currentPatrolIndex];
-        Vector2 direction = ((Vector2)targetPoint.position - rb.position).normalized;
-        rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
-
-        float distance = Vector2.Distance(rb.position, targetPoint.position);
-        if (distance < 0.2f)
-        {
-            patrolWaitTimer += Time.fixedDeltaTime;
-            if (patrolWaitTimer >= patrolWaitTime)
-            {
-                currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length;
-                patrolWaitTimer = 0f;
-            }
-        }
-        else
-        {
-            patrolWaitTimer = 0f;
         }
     }
 
