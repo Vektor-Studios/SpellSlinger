@@ -16,8 +16,6 @@ public class Gun : MonoBehaviour
     {
         //move to player transform
         transform.position = GameObject.FindGameObjectWithTag("Player").transform.position;
-        // add an offset to the gun position
-        //transform.position += new Vector3(0.5f, 0f, 0f);
         //rotate to face mouse position using the player's transform as the rotation origin
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         Vector3 direction = mousePos - transform.position;

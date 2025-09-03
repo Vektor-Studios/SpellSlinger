@@ -8,8 +8,12 @@ public class Movement : MonoBehaviour
     void Start()
     {
         Destroy(gameObject, lifeTime);
-        // move bullet out of player's position
-        transform.position += transform.up * speed * 2 * Time.deltaTime;
+        var i=0;
+        while (i < 10)
+        {
+            Update();
+            i++;
+        }
     }
 
     void Update()
