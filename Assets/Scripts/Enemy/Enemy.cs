@@ -17,11 +17,6 @@ public class Enemy : MonoBehaviour
     // Flee settings
     public float fleeDistance = 6f;
 
-    // I-Frame settings
-    public float iFrameDuration = 0.5f; // Duration of invulnerability after being hit
-    private float iFrameTimer = 0f;
-    private bool isInvulnerable = false;
-
     private Transform player;
     private Rigidbody2D rb;
 
@@ -43,15 +38,6 @@ public class Enemy : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Handle i-frame timer
-        if (isInvulnerable)
-        {
-            iFrameTimer -= Time.fixedDeltaTime;
-            if (iFrameTimer <= 0f)
-            {
-                isInvulnerable = false;
-            }
-        }
 
         switch (currentState)
         {
@@ -128,16 +114,10 @@ public class Enemy : MonoBehaviour
     // Call this when hit by a bullet
     public void TakeDamage(int amount)
     {
-        if (isInvulnerable)
-            return;
         currentState = State.Chase; // Switch to chase state when hit
         health -= amount;
         if (health <= 0)
             Destroy(gameObject);
-
-        // Activate i-frames
-        isInvulnerable = true;
-        iFrameTimer = iFrameDuration;
     }
 
     void OnTriggerEnter2D(Collider2D other)
