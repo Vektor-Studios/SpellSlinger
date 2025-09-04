@@ -17,7 +17,7 @@ public class Move : MonoBehaviour
     public float bulletIconWidth = 40f;  // Set in Inspector for icon width
     public float bulletIconHeight = 30f; // Set in Inspector for icon height
 
-    public float reloadTime = 0.5f; // Time in seconds to reload
+    public float reloadTime = 0.2f; // Time in seconds to reload
     private bool isReloading = false;
     private float reloadTimer = 0f;
 
