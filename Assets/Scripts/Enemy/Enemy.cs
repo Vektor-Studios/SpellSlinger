@@ -6,7 +6,6 @@ public class Enemy : MonoBehaviour
     {
         Idle,
         Chase,
-        Patrol,
         Flee
     }
 

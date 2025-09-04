@@ -77,22 +77,7 @@ public class Move : MonoBehaviour
         {
             if (bulletsLeft > 0)
             {
-                Vector2 spawnPos = firePoint ? firePoint.position : transform.position;
-
-                Vector3 mouseScreenPos = Mouse.current.position.ReadValue();
-                Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(mouseScreenPos);
-                mouseWorldPos.z = 0f;
-
-                Vector2 direction = (mouseWorldPos - (Vector3)spawnPos).normalized;
-                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-                int spread = Random.Range(-10, 11) - 90;
-                Quaternion rotation = Quaternion.Euler(0, 0, angle + spread);
-
-                Instantiate(Bullet, spawnPos, rotation);
-
-                bulletsLeft--;
-                Debug.Log($"Bullets left: {bulletsLeft}");
+               SpawnBullet(1);
             }
             else
             {
@@ -139,6 +124,30 @@ public class Move : MonoBehaviour
         {
             TakeDamage(1);
             // Optionally, add knockback or effects here
+        }
+    }
+
+    void SpawnBullet(int count = 1)
+    {
+        var i = 0;
+        while (i < count) {
+            Vector2 spawnPos = firePoint ? firePoint.position : transform.position;
+
+            Vector3 mouseScreenPos = Mouse.current.position.ReadValue();
+            Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(mouseScreenPos);
+            mouseWorldPos.z = 0f;
+
+            Vector2 direction = (mouseWorldPos - (Vector3)spawnPos).normalized;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+            int spread = Random.Range(-10, 11) - 90;
+            Quaternion rotation = Quaternion.Euler(0, 0, angle + spread);
+
+            Instantiate(Bullet, spawnPos, rotation);
+
+            bulletsLeft--;
+            Debug.Log($"Bullets left: {bulletsLeft}");
+            i++;
         }
     }
 
