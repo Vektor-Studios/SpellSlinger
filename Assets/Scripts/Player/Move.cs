@@ -129,6 +129,8 @@ public class Move : MonoBehaviour
 
     void SpawnBullet(int count = 1)
     {
+        bulletsLeft--;
+        Debug.Log($"Bullets left: {bulletsLeft}");
         var i = 0;
         while (i < count) {
             Vector2 spawnPos = firePoint ? firePoint.position : transform.position;
@@ -144,9 +146,6 @@ public class Move : MonoBehaviour
             Quaternion rotation = Quaternion.Euler(0, 0, angle + spread);
 
             Instantiate(Bullet, spawnPos, rotation);
-
-            bulletsLeft--;
-            Debug.Log($"Bullets left: {bulletsLeft}");
             i++;
         }
     }
