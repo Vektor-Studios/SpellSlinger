@@ -6,6 +6,7 @@ MonoImporter:
   defaultReferences:
   - Bullet: {fileID: 5178859509095462685, guid: 0153c49234c883146ab4882c07f4c24f, type: 3}
   - firePoint: {instanceID: 0}
+  - bulletIcon: {fileID: 2800000, guid: 6467c9f4ddce5a948a771b3b9984efbc, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
