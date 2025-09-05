@@ -77,7 +77,7 @@ public class Move : MonoBehaviour
         {
             if (bulletsLeft > 0)
             {
-               SpawnBullet(1,5);
+               Pistol();
             }
             else
             {
@@ -125,6 +125,16 @@ public class Move : MonoBehaviour
             TakeDamage(1);
             // Optionally, add knockback or effects here
         }
+    }
+
+    void Pistol() {
+        SpawnBullet(1,5);
+    }
+    void Shotgun() {
+        SpawnBullet(5,15);
+    }
+    void UltraShotgun() {
+        SpawnBullet(10,30);
     }
 
     void SpawnBullet(int count = 1,int spreadAngle = 5)
