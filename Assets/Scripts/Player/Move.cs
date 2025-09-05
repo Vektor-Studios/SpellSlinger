@@ -30,7 +30,7 @@ public class Move : MonoBehaviour
     public int maxHP = 5;
     public int currentHP;
 
-    private int CurrentWeapon = Weapons.Pistol;
+    private int CurrentWeapon = (int)Weapons.Shotgun;
 
     void Awake()
     {
@@ -86,13 +86,13 @@ public class Move : MonoBehaviour
             if (bulletsLeft > 0)
             {
                 switch (CurrentWeapon){
-                    case Weapons.Pistol:
+                    case (int)Weapons.Pistol:
                         Pistol();
                     break;
-                    case Weapons.Shotgun:
+                    case (int)Weapons.Shotgun:
                         Shotgun();
                     break;
-                    case Weapons.UltraShotgun:
+                    case (int)Weapons.UltraShotgun:
                         UltraShotgun();
                     break;
                 }
