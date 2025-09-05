@@ -30,7 +30,7 @@ public class Move : MonoBehaviour
     public int maxHP = 5;
     public int currentHP;
 
-    private int CurrentWeapon = (int)Weapons.Shotgun;
+    private int CurrentWeapon = (int)Weapons.Pistol;
 
     void Awake()
     {
