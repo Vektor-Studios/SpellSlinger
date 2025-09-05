@@ -77,7 +77,7 @@ public class Move : MonoBehaviour
         {
             if (bulletsLeft > 0)
             {
-               SpawnBullet(1);
+               SpawnBullet(1,5);
             }
             else
             {
@@ -127,7 +127,7 @@ public class Move : MonoBehaviour
         }
     }
 
-    void SpawnBullet(int count = 1)
+    void SpawnBullet(int count = 1,int spreadAngle = 5)
     {
         bulletsLeft--;
         Debug.Log($"Bullets left: {bulletsLeft}");
@@ -142,7 +142,7 @@ public class Move : MonoBehaviour
             Vector2 direction = (mouseWorldPos - (Vector3)spawnPos).normalized;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-            int spread = Random.Range(-10, 11) - 90;
+            int spread = Random.Range(-spreadAngle, spreadAngle + 1) - 90;
             Quaternion rotation = Quaternion.Euler(0, 0, angle + spread);
 
             Instantiate(Bullet, spawnPos, rotation);
