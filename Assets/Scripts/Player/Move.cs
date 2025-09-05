@@ -3,6 +3,12 @@ using UnityEngine.InputSystem;
 
 public class Move : MonoBehaviour
 {
+    public enum Weapons
+    {
+        Pistol,
+        Shotgun,
+        UltraShotgun
+    }
     private PlayerInputActions inputActions;
     public float sprintSpeed = 10f; // Speed when sprinting
     public float walkSpeed = 5f; // Normal walking speed
@@ -23,6 +29,8 @@ public class Move : MonoBehaviour
 
     public int maxHP = 5;
     public int currentHP;
+
+    private int CurrentWeapon = Weapons.Pistol; // 0 = Pistol, 1 = Shotgun, 2 = UltraShotgun
 
     void Awake()
     {
@@ -77,12 +85,22 @@ public class Move : MonoBehaviour
         {
             if (bulletsLeft > 0)
             {
-               Pistol();
+                switch (CurrentWeapon){
+                    case Weapons.Pistol:
+                        Pistol();
+                    break;
+                    case Weapons.Shotgun:
+                        Shotgun();
+                    break;
+                    case Weapons.UltraShotgun:
+                        UltraShotgun();
+                    break;
+                }
             }
             else
-            {
-                Debug.Log("Magazine empty! Reload to shoot again.");
-            }
+                    {
+                        Debug.Log("Magazine empty! Reload to shoot again.");
+                    }
         }
         if (_interacting)
         {
