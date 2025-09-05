@@ -12,16 +12,16 @@ public class Move : MonoBehaviour
     private PlayerInputActions inputActions;
     public float sprintSpeed = 10f; // Speed when sprinting
     public float walkSpeed = 5f; // Normal walking speed
-    public float speed = 5f; // Movement speed
+    public float speed = 5f; // Current movement speed
     public GameObject Bullet; // Drag your Bullet prefab here in the Inspector
     public Transform firePoint;     // Optional: where the bullet spawns
 
     public int magazineSize = 6; // Maximum bullets per magazine
-    private int bulletsLeft;      // Bullets remaining in magazine
+    private int bulletsLeft; // Bullets remaining in magazine
 
     public Texture2D bulletIcon; // Assign a bullet sprite/texture in the Inspector
-    public float bulletIconWidth = 40f;  // Set in Inspector for icon width
-    public float bulletIconHeight = 30f; // Set in Inspector for icon height
+    public float bulletIconWidth = 40f;
+    public float bulletIconHeight = 30f;
 
     public float reloadTime = 0.2f; // Time in seconds to reload
     private bool isReloading = false;
@@ -30,7 +30,7 @@ public class Move : MonoBehaviour
     public int maxHP = 5;
     public int currentHP;
 
-    private int CurrentWeapon = Weapons.Pistol; // 0 = Pistol, 1 = Shotgun, 2 = UltraShotgun
+    private int CurrentWeapon = Weapons.Pistol;
 
     void Awake()
     {
