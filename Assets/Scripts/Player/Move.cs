@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class Move : MonoBehaviour
 {
@@ -29,15 +30,16 @@ public class Move : MonoBehaviour
 
     public int maxHP = 5;
     public int currentHP;
-
-    private int CurrentWeapon = (int)Weapons.Pistol;
-
+    public int[] weaponList = new int[] { (int)Weapons.Pistol, (int)Weapons.Shotgun, (int)Weapons.UltraShotgun };
+    public int selectedIndex = 0; // Index of the currently selected value in the array
+    private int CurrentWeapon = 0;
     void Awake()
     {
         inputActions = new PlayerInputActions();
         Bullet = Resources.Load<GameObject>("Bullet"); // Load the Bullet prefab from Resources folder
         bulletsLeft = magazineSize; // Fill magazine at start
         currentHP = maxHP; // Initialize player HP
+        CurrentWeapon = weaponList[selectedIndex];
     }
 
     void OnEnable()
