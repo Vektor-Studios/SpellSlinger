@@ -114,6 +114,18 @@ public class Move : MonoBehaviour
         {
             speed = walkSpeed;
         }
+        if (_weapon_next)
+        {
+            selectedIndex = (selectedIndex + 1) % weaponList.Length;
+            CurrentWeapon = weaponList[selectedIndex];
+            Debug.Log($"Switched to weapon: {((Weapons)CurrentWeapon).ToString()}");
+        }
+        if (_weapon_last)
+        {
+            selectedIndex = (selectedIndex - 1 + weaponList.Length) % weaponList.Length;
+            CurrentWeapon = weaponList[selectedIndex];
+            Debug.Log($"Switched to weapon: {((Weapons)CurrentWeapon).ToString()}");
+        }
 
         transform.position += new Vector3(move.x, move.y, 0f) * speed * Time.deltaTime;
     }
