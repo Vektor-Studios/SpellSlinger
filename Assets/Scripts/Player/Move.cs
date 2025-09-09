@@ -56,7 +56,6 @@ public class Move : MonoBehaviour
     {
         Vector2 move = inputActions.Player.Move.ReadValue<Vector2>();
         var _attacking = inputActions.Player.Attack.triggered;
-        var _interacting = inputActions.Player.Interact.triggered;
         var _sprinting = inputActions.Player.Sprint.IsPressed();
         var _reloading = inputActions.Player.Reload.IsPressed();
 
