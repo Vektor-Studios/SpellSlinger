@@ -106,10 +106,6 @@ public class Move : MonoBehaviour
                         Debug.Log("Magazine empty! Reload to shoot again.");
                     }
         }
-        if (_interacting)
-        {
-            Debug.Log("Interacting!");
-        }
         if (_sprinting)
         {
             speed = sprintSpeed;
