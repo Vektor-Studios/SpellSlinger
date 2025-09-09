@@ -59,6 +59,9 @@ public class Move : MonoBehaviour
         var _sprinting = inputActions.Player.Sprint.IsPressed();
         var _reloading = inputActions.Player.Reload.IsPressed();
 
+        var _weapon_last = inputActions.Player.Previous.triggered;
+        var _weapon_next = inputActions.Player.Next.triggered;
+
         // Handle reloading logic
         if (_reloading && !isReloading && bulletsLeft < magazineSize)
         {
