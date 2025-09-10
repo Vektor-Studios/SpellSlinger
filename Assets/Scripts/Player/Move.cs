@@ -163,7 +163,7 @@ public class Move : MonoBehaviour
     void Shotgun() {
         SpawnBullet(5,15);
     }
-    void UltraShotgun() {
+    void Ultra_Shotgun() {
         SpawnBullet(10,30);
     }
 
@@ -256,6 +256,8 @@ public class Move : MonoBehaviour
         //Draw current weapon text
         {
             string weaponName = ((Weapons)CurrentWeapon).ToString();
+            //replace underscores with spaces
+            weaponName = weaponName.Replace("_", " ");
             GUIStyle style = new GUIStyle(GUI.skin.label);
             style.fontSize = 15;
             style.normal.textColor = Color.gray;
