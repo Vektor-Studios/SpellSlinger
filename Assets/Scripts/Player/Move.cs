@@ -8,7 +8,7 @@ public class Move : MonoBehaviour
     {
         Pistol,
         Shotgun,
-        UltraShotgun
+        Ultra_Shotgun
     }
     private PlayerInputActions inputActions;
     public float sprintSpeed = 10f; // Speed when sprinting
@@ -30,7 +30,7 @@ public class Move : MonoBehaviour
 
     public int maxHP = 5;
     public int currentHP;
-    public int[] weaponList = new int[] { (int)Weapons.Pistol, (int)Weapons.Shotgun, (int)Weapons.UltraShotgun };
+    public int[] weaponList = new int[] { (int)Weapons.Pistol, (int)Weapons.Shotgun, (int)Weapons.Ultra_Shotgun };
     public int selectedIndex = 0; // Index of the currently selected value in the array
     private int CurrentWeapon = 0;
     void Awake()
@@ -96,8 +96,8 @@ public class Move : MonoBehaviour
                     case (int)Weapons.Shotgun:
                         Shotgun();
                     break;
-                    case (int)Weapons.UltraShotgun:
-                        UltraShotgun();
+                    case (int)Weapons.Ultra_Shotgun:
+                        Ultra_Shotgun();
                     break;
                 }
             }
@@ -257,11 +257,11 @@ public class Move : MonoBehaviour
         {
             string weaponName = ((Weapons)CurrentWeapon).ToString();
             GUIStyle style = new GUIStyle(GUI.skin.label);
-            style.fontSize = 20;
-            style.normal.textColor = Color.white;
+            style.fontSize = 15;
+            style.normal.textColor = Color.gray;
             Vector2 size = style.CalcSize(new GUIContent(weaponName));
             float x = 40f; // 40 pixels from left edge
-            float y = Screen.height - size.y - 20f; // 20 pixels from bottom edge
+            float y = Screen.height - size.y - 15f; // 20 pixels from bottom edge
             GUI.Label(new Rect(x, y, size.x, size.y), weaponName, style);
         }
     }
