@@ -207,7 +207,7 @@ public class Move : MonoBehaviour
         }
 
         // Draw player health bar above player
-            {
+        {
             Vector3 worldPos = transform.position + Vector3.up * 1.7f;
             Vector3 screenPos = Camera.main.WorldToScreenPoint(worldPos);
 
@@ -252,6 +252,17 @@ public class Move : MonoBehaviour
             GUI.DrawTexture(new Rect(x + 2, y + 2, (barWidth - 4) * progress, barHeight - 4), Texture2D.whiteTexture);
 
             GUI.color = Color.white; // Reset color
+        }
+        //Draw current weapon text
+        {
+            string weaponName = ((Weapons)CurrentWeapon).ToString();
+            GUIStyle style = new GUIStyle(GUI.skin.label);
+            style.fontSize = 20;
+            style.normal.textColor = Color.white;
+            Vector2 size = style.CalcSize(new GUIContent(weaponName));
+            float x = 40f; // 40 pixels from left edge
+            float y = Screen.height - size.y - 20f; // 20 pixels from bottom edge
+            GUI.Label(new Rect(x, y, size.x, size.y), weaponName, style);
         }
     }
 }
