@@ -194,15 +194,16 @@ public class Move : MonoBehaviour
         // Draw bullet icons
         if (bulletIcon != null)
         {
-            float padding = 20f;
-            float spacing = 10f;
+            float padding = 10f;
+            float spacing = padding/2f;
             float x = padding;
-            float yStart = Screen.height - padding - bulletIconHeight;
+            float y = Screen.height - padding - bulletIconHeight;
 
             for (int i = 0; i < bulletsLeft; i++)
             {
-                float y = yStart - i * (bulletIconHeight + spacing);
+                //float y = yStart - i * (bulletIconHeight + spacing);
                 GUI.DrawTexture(new Rect(x, y, bulletIconWidth, bulletIconHeight), bulletIcon);
+                x += bulletIconWidth + spacing;
             }
         }
 
@@ -262,8 +263,8 @@ public class Move : MonoBehaviour
             style.fontSize = 15;
             style.normal.textColor = Color.gray;
             Vector2 size = style.CalcSize(new GUIContent(weaponName));
-            float x = 40f; // 40 pixels from left edge
-            float y = Screen.height - size.y - 15f; // 20 pixels from bottom edge
+            float x = 10f; // 10 pixels from left edge
+            float y = Screen.height - size.y - 20f; // 20 pixels from bottom edge
             GUI.Label(new Rect(x, y, size.x, size.y), weaponName, style);
         }
     }
