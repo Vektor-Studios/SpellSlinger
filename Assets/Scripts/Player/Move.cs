@@ -2,6 +2,22 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
 
+public class Pistol : MonoBehaviour
+{
+    public int bulletCount = 1;
+    public float bulletSpread = 5f;
+}
+public class Shotgun : MonoBehaviour
+{
+    public int bulletCount = 5;
+    public float bulletSpread = 15f;
+}
+public class Ultra_Shotgun : MonoBehaviour
+{
+    public int bulletCount = 10;
+    public float bulletSpread = 30f;
+}
+
 public class Move : MonoBehaviour
 {
     public enum Weapons
@@ -68,7 +84,7 @@ public class Move : MonoBehaviour
             isReloading = true;
             reloadTimer = 0f;
         }
-        if (! _reloading && isReloading)
+        if (!_reloading && isReloading)
         {
             // Cancel reload if button released early
             isReloading = false;
@@ -89,22 +105,26 @@ public class Move : MonoBehaviour
         {
             if (bulletsLeft > 0)
             {
-                switch (CurrentWeapon){
+                switch (CurrentWeapon)
+                {
                     case (int)Weapons.Pistol:
-                        Pistol();
-                    break;
+                        Pistol pistol = new Pistol();
+                        SpawnBullet(pistol.bulletCount, (int)pistol.bulletSpread);
+                        break;
                     case (int)Weapons.Shotgun:
-                        Shotgun();
-                    break;
+                        Shotgun shotgun = new Shotgun();
+                        SpawnBullet(shotgun.bulletCount, (int)shotgun.bulletSpread);
+                        break;
                     case (int)Weapons.Ultra_Shotgun:
-                        Ultra_Shotgun();
-                    break;
+                        Ultra_Shotgun ultra_Shotgun = new Ultra_Shotgun();
+                        SpawnBullet(ultra_Shotgun.bulletCount, (int)ultra_Shotgun.bulletSpread);
+                        break;
                 }
             }
             else
-                    {
-                        Debug.Log("Magazine empty! Reload to shoot again.");
-                    }
+            {
+                Debug.Log("Magazine empty! Reload to shoot again.");
+            }
         }
         if (_sprinting)
         {
@@ -157,21 +177,12 @@ public class Move : MonoBehaviour
         }
     }
 
-    void Pistol() {
-        SpawnBullet(1,5);
-    }
-    void Shotgun() {
-        SpawnBullet(5,15);
-    }
-    void Ultra_Shotgun() {
-        SpawnBullet(10,30);
-    }
-
-    void SpawnBullet(int count = 1,int spreadAngle = 5)
+    void SpawnBullet(int count = 1, int spreadAngle = 5)
     {
         bulletsLeft--;
         var i = 0;
-        while (i < count) {
+        while (i < count)
+        {
             Vector2 spawnPos = firePoint ? firePoint.position : transform.position;
 
             Vector3 mouseScreenPos = Mouse.current.position.ReadValue();
@@ -195,7 +206,7 @@ public class Move : MonoBehaviour
         if (bulletIcon != null)
         {
             float padding = 10f;
-            float spacing = padding/2f;
+            float spacing = padding / 2f;
             float x = padding;
             float y = Screen.height - padding - bulletIconHeight;
 
