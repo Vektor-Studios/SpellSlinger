@@ -49,6 +49,8 @@ public class Move : MonoBehaviour
     public int[] weaponList = new int[] { (int)Weapons.Pistol, (int)Weapons.Shotgun, (int)Weapons.Ultra_Shotgun };
     public int selectedIndex = 0; // Index of the currently selected value in the array
     private int CurrentWeapon = 0;
+    private int weaponBulletCount = 1;
+    private float weaponBulletSpread = 5;
     void Awake()
     {
         inputActions = new PlayerInputActions();
@@ -105,21 +107,7 @@ public class Move : MonoBehaviour
         {
             if (bulletsLeft > 0)
             {
-                switch (CurrentWeapon)
-                {
-                    case (int)Weapons.Pistol:
-                        Pistol pistol = new Pistol();
-                        SpawnBullet(pistol.bulletCount, (int)pistol.bulletSpread);
-                        break;
-                    case (int)Weapons.Shotgun:
-                        Shotgun shotgun = new Shotgun();
-                        SpawnBullet(shotgun.bulletCount, (int)shotgun.bulletSpread);
-                        break;
-                    case (int)Weapons.Ultra_Shotgun:
-                        Ultra_Shotgun ultra_Shotgun = new Ultra_Shotgun();
-                        SpawnBullet(ultra_Shotgun.bulletCount, (int)ultra_Shotgun.bulletSpread);
-                        break;
-                }
+                SpawnBullet(weaponBulletCount, (int) weaponBulletSpread);
             }
             else
             {
@@ -139,12 +127,14 @@ public class Move : MonoBehaviour
             selectedIndex = (selectedIndex + 1) % weaponList.Length;
             CurrentWeapon = weaponList[selectedIndex];
             Debug.Log($"Switched to weapon: {((Weapons)CurrentWeapon).ToString()}");
+            SetWeaponAttributes(CurrentWeapon);
         }
         if (_weapon_last)
         {
             selectedIndex = (selectedIndex - 1 + weaponList.Length) % weaponList.Length;
             CurrentWeapon = weaponList[selectedIndex];
             Debug.Log($"Switched to weapon: {((Weapons)CurrentWeapon).ToString()}");
+            SetWeaponAttributes(CurrentWeapon);
         }
 
         transform.position += new Vector3(move.x, move.y, 0f) * speed * Time.deltaTime;
@@ -154,6 +144,28 @@ public class Move : MonoBehaviour
     {
         bulletsLeft = magazineSize;
         Debug.Log("Reloaded!");
+    }
+
+    void SetWeaponAttributes(int weapon = 0)
+    {
+        switch (weapon)
+        {
+            case (int)Weapons.Pistol:
+                Pistol pistol = new Pistol();
+                weaponBulletCount = pistol.bulletCount;
+                weaponBulletSpread = pistol.bulletSpread;
+                break;
+            case (int)Weapons.Shotgun:
+                Shotgun shotgun = new Shotgun();
+                weaponBulletCount = shotgun.bulletCount;
+                weaponBulletSpread = shotgun.bulletSpread;
+                break;
+            case (int)Weapons.Ultra_Shotgun:
+                Ultra_Shotgun ultra_Shotgun = new Ultra_Shotgun();
+                weaponBulletCount = ultra_Shotgun.bulletCount;
+                weaponBulletSpread = ultra_Shotgun.bulletSpread;
+                break;
+        }
     }
 
     public void TakeDamage(int amount)
