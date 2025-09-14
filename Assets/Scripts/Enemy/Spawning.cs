@@ -27,14 +27,7 @@ public class EnemySpawner : MonoBehaviour
         int currentEnemies = GameObject.FindGameObjectsWithTag("Enemy").Length;
         if (currentEnemies == 0)
         {
-            maxEnemies += 2 * roundNumber; // Increase max enemies each round
-            roundNumber++;
-            while (currentEnemies < maxEnemies)
-            {
-                SpawnEnemy();
-                currentEnemies++;
-            }
-
+            NewRound();
             Debug.Log("Round " + roundNumber + " started with " + maxEnemies + " enemies.");
 
         }
@@ -47,5 +40,17 @@ public class EnemySpawner : MonoBehaviour
         Vector3 spawnPos = player.position + new Vector3(spawnOffset.x, spawnOffset.y, 0f);
 
         Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
+    }
+
+    void NewRound()
+    {
+        maxEnemies += 2 * roundNumber; // Increase max enemies each round
+        roundNumber++;
+        var i = 0;
+        while (i < maxEnemies)
+        {
+            SpawnEnemy();
+            i++;
+        }
     }
 }
