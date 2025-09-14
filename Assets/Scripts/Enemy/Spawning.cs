@@ -8,12 +8,13 @@ public class EnemySpawner : MonoBehaviour
     public float spawnRadius = 8f;   // Distance from the player to spawn enemies
 
     public Transform player;
+    public GameObject playerObj;
     void Awake()
     {
         // Auto-find player if not assigned
         if (player == null)
         {
-            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+            playerObj = GameObject.FindGameObjectWithTag("Player");
             if (playerObj != null)
                 player = playerObj.transform;
         }
