@@ -126,13 +126,6 @@ public class Move : MonoBehaviour
         }
         if (_weapon_next)
         {
-            /*
-            selectedIndex = (selectedIndex + 1) % weaponList.Length;
-            CurrentWeapon = weaponList[selectedIndex];
-            Debug.Log($"Switched to weapon: {((Weapons)CurrentWeapon).ToString()}");
-            SetWeaponAttributes(CurrentWeapon);
-            /*/
-
             // cycle through avaiable weapons in WeaponList list
             if (WeaponList.Count > 1)
             {
@@ -144,13 +137,6 @@ public class Move : MonoBehaviour
         }
         if (_weapon_last)
         {
-            /*
-            selectedIndex = (selectedIndex - 1 + weaponList.Length) % weaponList.Length;
-            CurrentWeapon = weaponList[selectedIndex];
-            Debug.Log($"Switched to weapon: {((Weapons)CurrentWeapon).ToString()}");
-            SetWeaponAttributes(CurrentWeapon);
-            /*/
-
             // Cycle through available weapons in WeaponList list
             if (WeaponList.Count > 1)
             {
