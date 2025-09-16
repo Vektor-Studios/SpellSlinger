@@ -59,7 +59,7 @@ public class Move : MonoBehaviour
         bulletsLeft = magazineSize; // Fill magazine at start
         currentHP = maxHP; // Initialize player HP
         CurrentWeapon = weaponList[selectedIndex];
-        WeaponList.AddRange(weaponList);
+        WeaponList.Add((int)Weapons.Pistol);
     }
 
     void OnEnable()
