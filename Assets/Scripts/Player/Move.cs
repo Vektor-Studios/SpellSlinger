@@ -57,8 +57,9 @@ public class Move : MonoBehaviour
         Bullet = Resources.Load<GameObject>("Bullet"); // Load the Bullet prefab from Resources folder
         bulletsLeft = magazineSize; // Fill magazine at start
         currentHP = maxHP; // Initialize player HP
-        WeaponList.Add((int)Weapons.Pistol);
+        AddWeapon((int)Weapons.Pistol); // Start with pistol
         CurrentWeapon = WeaponList[selectedIndex];
+        SetWeaponAttributes(WeaponList[CurrentWeapon]);
     }
 
     void OnEnable()
@@ -153,6 +154,16 @@ public class Move : MonoBehaviour
     {
         bulletsLeft = magazineSize;
         Debug.Log("Reloaded!");
+    }
+
+    void AddWeapon(int weapon)
+    {
+        if (!WeaponList.Contains(weapon))
+        {
+            WeaponList.Add(weapon);
+            Debug.Log($"Picked up weapon: {((Weapons)weapon).ToString()}");
+        }
+        
     }
 
     void SetWeaponAttributes(int weapon = 0)
