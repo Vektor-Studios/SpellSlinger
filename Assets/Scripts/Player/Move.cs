@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System.Collections;
+using System.Collections.Generic;
 
 public class Pistol : MonoBehaviour
 {
@@ -47,6 +47,7 @@ public class Move : MonoBehaviour
     public int maxHP = 5;
     public int currentHP;
     public int[] weaponList = new int[] { (int)Weapons.Pistol, (int)Weapons.Shotgun, (int)Weapons.Ultra_Shotgun };
+    public List<int> WeaponList = new List<int>();
     public int selectedIndex = 0; // Index of the currently selected value in the array
     private int CurrentWeapon = 0;
     private int weaponBulletCount = 1;
@@ -58,6 +59,7 @@ public class Move : MonoBehaviour
         bulletsLeft = magazineSize; // Fill magazine at start
         currentHP = maxHP; // Initialize player HP
         CurrentWeapon = weaponList[selectedIndex];
+        WeaponList.AddRange(weaponList);
     }
 
     void OnEnable()
@@ -124,17 +126,39 @@ public class Move : MonoBehaviour
         }
         if (_weapon_next)
         {
+            /*
             selectedIndex = (selectedIndex + 1) % weaponList.Length;
             CurrentWeapon = weaponList[selectedIndex];
             Debug.Log($"Switched to weapon: {((Weapons)CurrentWeapon).ToString()}");
             SetWeaponAttributes(CurrentWeapon);
+            /*/
+
+            // cycle through avaiable weapons in WeaponList list
+            if (WeaponList.Count > 1)
+            {
+                selectedIndex = (selectedIndex + 1) % WeaponList.Count;
+                CurrentWeapon = WeaponList[selectedIndex];
+                Debug.Log($"Switched to weapon: {((Weapons)CurrentWeapon).ToString()}");
+                SetWeaponAttributes(WeaponList[CurrentWeapon]);
+            }
         }
         if (_weapon_last)
         {
+            /*
             selectedIndex = (selectedIndex - 1 + weaponList.Length) % weaponList.Length;
             CurrentWeapon = weaponList[selectedIndex];
             Debug.Log($"Switched to weapon: {((Weapons)CurrentWeapon).ToString()}");
             SetWeaponAttributes(CurrentWeapon);
+            /*/
+
+            // Cycle through available weapons in WeaponList list
+            if (WeaponList.Count > 1)
+            {
+                selectedIndex = (selectedIndex - 1 + WeaponList.Count) % WeaponList.Count;
+                CurrentWeapon = WeaponList[selectedIndex];
+                Debug.Log($"Switched to weapon: {((Weapons)CurrentWeapon).ToString()}");
+                SetWeaponAttributes(WeaponList[CurrentWeapon]);
+            }
         }
 
         transform.position += new Vector3(move.x, move.y, 0f) * speed * Time.deltaTime;
