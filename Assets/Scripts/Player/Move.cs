@@ -46,7 +46,6 @@ public class Move : MonoBehaviour
 
     public int maxHP = 5;
     public int currentHP;
-    public int[] weaponList = new int[] { (int)Weapons.Pistol, (int)Weapons.Shotgun, (int)Weapons.Ultra_Shotgun };
     public List<int> WeaponList = new List<int>();
     public int selectedIndex = 0; // Index of the currently selected value in the array
     private int CurrentWeapon = 0;
@@ -58,8 +57,8 @@ public class Move : MonoBehaviour
         Bullet = Resources.Load<GameObject>("Bullet"); // Load the Bullet prefab from Resources folder
         bulletsLeft = magazineSize; // Fill magazine at start
         currentHP = maxHP; // Initialize player HP
-        CurrentWeapon = weaponList[selectedIndex];
         WeaponList.Add((int)Weapons.Pistol);
+        CurrentWeapon = WeaponList[selectedIndex];
     }
 
     void OnEnable()
