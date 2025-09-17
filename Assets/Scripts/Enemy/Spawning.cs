@@ -56,6 +56,8 @@ public class EnemySpawner : MonoBehaviour
             SpawnEnemy();
             i++;
         }
-        moveScript.WeaponDrop();
+        if (roundNumber != 1) {
+            moveScript.WeaponDrop();
+        }
     }
 }
