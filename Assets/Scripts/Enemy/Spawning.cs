@@ -9,6 +9,7 @@ public class EnemySpawner : MonoBehaviour
 
     public Transform player;
     public GameObject playerObj;
+    public Move moveScript;
     void Awake()
     {
         // Auto-find player if not assigned
@@ -17,6 +18,8 @@ public class EnemySpawner : MonoBehaviour
             playerObj = GameObject.FindGameObjectWithTag("Player");
             if (playerObj != null)
                 player = playerObj.transform;
+
+            moveScript = playerObj.GetComponent<Move>();
         }
     }
 
@@ -53,5 +56,6 @@ public class EnemySpawner : MonoBehaviour
             SpawnEnemy();
             i++;
         }
+        moveScript.WeaponDrop();
     }
 }

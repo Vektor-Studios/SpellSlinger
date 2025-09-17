@@ -232,6 +232,8 @@ MonoBehaviour:
   reloadTime: 1.5
   maxHP: 5
   currentHP: 0
+  WeaponList: 
+  selectedIndex: 0
 --- !u!58 &221558369
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -654,6 +656,8 @@ MonoBehaviour:
   roundNumber: 0
   spawnRadius: 8
   player: {fileID: 0}
+  playerObj: {fileID: 0}
+  moveScript: {fileID: 221558368}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

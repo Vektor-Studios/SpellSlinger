@@ -160,14 +160,14 @@ public class Move : MonoBehaviour
         if (!WeaponList.Contains(weapon))
         {
             WeaponList.Add(weapon);
-            Debug.Log($"Picked up weapon: {((Weapons)weapon).ToString()}");
         }
         
     }
 
-    void WeaponDrop()
+    public void WeaponDrop()
     {
         int weapon = Random.Range(0, (int) Weapons.Ultra_Shotgun + 1);
+        Debug.Log($"Added Weapon: {((Weapons)weapon).ToString()}");
         AddWeapon(weapon);
     }
 
