@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
-
 public class Pistol : MonoBehaviour
 {
     public int bulletCount = 1;
@@ -164,6 +163,12 @@ public class Move : MonoBehaviour
             Debug.Log($"Picked up weapon: {((Weapons)weapon).ToString()}");
         }
         
+    }
+
+    void WeaponDrop()
+    {
+        int weapon = Random.Range(0, (int) Weapons.Ultra_Shotgun + 1);
+        AddWeapon(weapon);
     }
 
     void SetWeaponAttributes(int weapon = 0)
