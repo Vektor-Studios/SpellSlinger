@@ -14,7 +14,7 @@ public class Shotgun : MonoBehaviour
 public class Ultra_Shotgun : MonoBehaviour
 {
     public int bulletCount = 10;
-    public float bulletSpread = 30f;
+    public float bulletSpread = 180f;
 }
 
 public class Move : MonoBehaviour
@@ -128,10 +128,13 @@ public class Move : MonoBehaviour
             // cycle through avaiable weapons in WeaponList list
             if (WeaponList.Count > 1)
             {
+                /*
                 selectedIndex = (selectedIndex + 1) % WeaponList.Count;
                 CurrentWeapon = WeaponList[selectedIndex];
                 Debug.Log($"Switched to weapon: {((Weapons)CurrentWeapon).ToString()}");
                 SetWeaponAttributes(WeaponList[CurrentWeapon]);
+                /*/
+                CycleWeapon(1);
             }
         }
         if (_weapon_last)
@@ -139,10 +142,13 @@ public class Move : MonoBehaviour
             // Cycle through available weapons in WeaponList list
             if (WeaponList.Count > 1)
             {
+                CycleWeapon(-1 + WeaponList.Count);
+                /*
                 selectedIndex = (selectedIndex - 1 + WeaponList.Count) % WeaponList.Count;
                 CurrentWeapon = WeaponList[selectedIndex];
                 Debug.Log($"Switched to weapon: {((Weapons)CurrentWeapon).ToString()}");
                 SetWeaponAttributes(WeaponList[CurrentWeapon]);
+                /*/
             }
         }
 
@@ -157,16 +163,54 @@ public class Move : MonoBehaviour
 
     void AddWeapon(int weapon)
     {
-        if (!WeaponList.Contains(weapon))
+        if (!PlayerHasWeapon(weapon))
         {
             WeaponList.Add(weapon);
         }
-        
+    }
+
+    void RemoveWeapon(int weapon)
+    {
+        if (PlayerHasWeapon(weapon))
+        {
+            if (WeaponList.Count >= 1)
+            {
+                WeaponList.Remove(weapon);
+            }
+            else
+            {
+                Debug.Log("Don't abandon your only weapon!");
+            }
+            
+        }
+    }
+    void CycleWeapon(int direction)
+    {
+        selectedIndex = (selectedIndex + direction) % WeaponList.Count;
+        CurrentWeapon = WeaponList[selectedIndex];
+        Debug.Log($"Switched to weapon: {((Weapons)CurrentWeapon).ToString()}");
+        SetWeaponAttributes(WeaponList[CurrentWeapon]);
+    }
+
+    bool PlayerHasWeapon(int weapon)
+    {
+        if (WeaponList.Contains(weapon))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public void WeaponDrop()
     {
-        int weapon = Random.Range(0, (int) Weapons.Ultra_Shotgun + 1);
+        int weapon = Random.Range(0, (int)Weapons.Ultra_Shotgun + 1);
+        while (PlayerHasWeapon(weapon))
+        {
+            weapon = Random.Range(0, (int)Weapons.Ultra_Shotgun + 1);
+        }
         Debug.Log($"Added Weapon: {((Weapons)weapon).ToString()}");
         AddWeapon(weapon);
     }
